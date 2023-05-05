@@ -1,0 +1,78 @@
+{% extends 'index.html' %}
+
+
+{% block body %}
+<br><br>
+<div class="container">
+    <h4>Demo:</h4>
+    <div class="row">
+        <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
+            <img src="/static/media/demo_1.png"
+                class="w-100 shadow-1-strong rounded mb-4" alt="demo_1" />
+
+            <img src="/static/media/demo_4.png"
+                class="w-100 shadow-1-strong rounded mb-4" alt="demo_4" />
+        </div>
+
+        <div class="col-lg-4 mb-4 mb-lg-0">
+            <img src="/static/media/demo_2.png"
+                class="w-100 shadow-1-strong rounded mb-4" alt="demo_2" />
+        </div>
+
+        <div class="col-lg-4 mb-4 mb-lg-0">
+            <img src="/static/media/demo_3.png"
+                class="w-100 shadow-1-strong rounded mb-4" alt="demo_3" />
+
+        </div>
+    </div>
+</div>
+<h4>
+    Upload the Business Card to Scan and Extract Entities
+</h4>
+
+<div class="row">
+    <form action="#" method="POST" enctype="multipart/form-data">
+        <div class="input-group">
+            <input type="file" class="form-control" name="image_name" required>
+            <input type="submit" value="Upload Image" class="btn btn-primary">
+        </div>
+    </form>
+    <br>
+    {% if fileupload %}
+
+    <div class="row">
+        <button class="btn btn-primary" id="sendData">Wrap Document and Extract Text</button>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+
+<!-- Creating CANVAS -->
+{% if fileupload %}
+<p>{{ message }}</p>
+
+<div class="row">
+    <div class="col">
+        <canvas id="canvas" style="max-width: 100%; height: auto"></canvas>
+
+    </div>
+    <div class="col" id="loader" align="center">
+
+    </div>
+
+</div>
+
+<script>
+    loadPoints({{ points | tojson }})
+</script>
+
+
+
+
+
+{% endif %}
+
+{% endblock %}
